@@ -150,62 +150,50 @@ body {
     }
 }
 
-/* --- オーロラテキスト (KAIJU Energy ver.) --- */
+/* --- オーロラテキスト (Solid Red / High Heat ver.) --- */
 .text-wrapper {
-    /* グラデーション構成:
-      - 赤 (Logo Color): ベースカラー
-      - マゼンタ/紫: 深みと色気、Web3っぽさ
-      - 白/シルバー: 金属感と高エネルギー（最も熱い部分）
+    /* 純粋な赤の濃淡と、光の反射（白）だけで構成 
+      紫や青は一切混ぜない
     */
     background: linear-gradient(
-        120deg, 
-        #D21C1C 0%,    /* KAIJU Red */
-        #800080 25%,   /* Deep Purple (影) */
-        #ff0055 50%,   /* Neon Pink (発光) */
-        #ffffff 75%,   /* White (コア/閃光) */
-        #D21C1C 100%   /* Loop */
+        110deg, 
+        #8a0000 0%,    /* 暗い赤 (影) */
+        #D21C1C 30%,   /* ロゴの赤 (ベース) */
+        #ffffff 50%,   /* 純白 (光の反射/コア) */
+        #D21C1C 70%,   /* ロゴの赤 */
+        #8a0000 100%   /* 暗い赤 */
     );
   
-    /* テキストで切り抜くおまじない */
+    /* テキスト切り抜き */
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
   
-    /* グラデーションを拡大してアニメーションの余地を作る */
-    background-size: 300% 300%;
+    /* グラデーション幅を広げて、光が走る余地を作る */
+    background-size: 200% auto;
   
-    /* ゆったりとした呼吸のような動き */
-    animation: kaiju-breath 6s ease-in-out infinite;
+    /* 金属が光を反射するように、鋭く移動させる */
+    animation: shine-flow 4s linear infinite;
   
-    /* 基本のグロー（赤く滲む光） */
-    filter: drop-shadow(0 0 10px rgba(210, 28, 28, 0.5));
+    /* グローも純粋な赤のみを使用 */
+    filter: drop-shadow(0 0 15px rgba(210, 28, 28, 0.6));
   
     display: inline-block;
     font-weight: 700;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* ホバー時のバースト効果 */
+/* ホバー時はさらに熱量を上げる */
 .text-wrapper:hover {
-    transform: scale(1.05);
-    /* ホバー時は白熱して光が強くなるイメージ */
-    filter: drop-shadow(0 0 30px rgba(255, 0, 85, 0.8)); 
+    filter: drop-shadow(0 0 25px rgba(255, 50, 50, 0.9));
 }
 
-/* アニメーション定義: 色を循環させつつ、光の強弱をつける */
-@keyframes kaiju-breath {
+/* アニメーション: 白い光が左から右へ流れる */
+@keyframes shine-flow {
     0% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 10px rgba(210, 28, 28, 0.4));
-    }
-    50% {
-        background-position: 100% 50%;
-        /* 中間地点で少し紫がかった怪しい光に */
-        filter: drop-shadow(0 0 25px rgba(128, 0, 128, 0.6));
+        background-position: -200% center;
     }
     100% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 10px rgba(210, 28, 28, 0.4));
+        background-position: 200% center;
     }
 }
